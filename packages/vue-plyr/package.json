@@ -22,7 +22,8 @@
 		}
 	},
 	"scripts": {
-		"build": "vite build && vue-tsc --declaration --emitDeclarationOnly"
+		"build": "vite build && vue-tsc --declaration --emitDeclarationOnly",
+		"publish": "npm publish"
 	},
 	"devDependencies": {
 		"@vitejs/plugin-vue": "^3.2.0",
