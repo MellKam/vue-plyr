@@ -7,8 +7,7 @@
 	],
 	"scripts": {
 		"build": "turbo run build",
-		"dev": "turbo run dev --parallel",
-		"publish": "pnpm --filter=@mellkam/vue-plyr publish"
+		"dev": "turbo run dev --parallel"
 	},
 	"devDependencies": {
 		"turbo": "latest",
