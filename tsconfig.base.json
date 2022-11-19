@@ -1,0 +1,15 @@
+{
+	"compilerOptions": {
+		"target": "esnext",
+		"module": "esnext",
+		"forceConsistentCasingInFileNames": true,
+		"moduleResolution": "node",
+		"noUnusedLocals": false,
+		"noUnusedParameters": false,
+		"preserveWatchOutput": true,
+		"strictNullChecks": true,
+		"strict": true,
+		"lib": ["esnext", "dom"]
+	},
+	"exclude": ["node_modules"]
+}

@@ -1,0 +1,12 @@
+{
+	"extends": "../../tsconfig.base.json",
+	"compilerOptions": {
+		"baseUrl": ".",
+		"declaration": true,
+		"outDir": "dist",
+		"jsx": "preserve",
+		"allowSyntheticDefaultImports": true,
+		"esModuleInterop": true
+	},
+	"include": ["./src/**/*.ts", "./src/**/*.vue"]
+}
