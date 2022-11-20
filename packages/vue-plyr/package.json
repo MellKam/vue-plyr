@@ -3,6 +3,19 @@
 	"version": "0.1.0",
 	"type": "module",
 	"main": "./dist/index.js",
+	"keywords": [
+		"plyr",
+		"player",
+		"vue",
+		"video",
+		"audio",
+		"youtube",
+		"vimeo"
+	],
+	"author": {
+		"name": "Artem Melnyk",
+		"url": "https://github.com/MellKam"
+	},
 	"exports": {
 		".": "./dist/index.js",
 		"./utils": "./dist/utils.js"
@@ -37,8 +50,8 @@
 		"vite-plugin-dts": "1.7.1"
 	},
 	"peerDependencies": {
-		"plyr": "3.7.3",
-		"vue": "3.2.45"
+		"plyr": ">=3.6.3",
+		"vue": ">=3.2.0"
 	},
 	"peerDependenciesMeta": {
 		"vue": {
