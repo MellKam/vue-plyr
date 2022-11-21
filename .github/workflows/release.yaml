@@ -25,40 +25,42 @@ jobs:
 
       # vue-plyr
       - name: Check package version
+        id: vue-plyr
         uses: PostHog/check-package-version@v2
         with:
           path: ./packages/vue-plyr
 
       - name: Install dependencies
-        if: steps.cpv.outputs.is-new-version == 'true'
+        if: steps.vue-plyr.outputs.is-new-version == 'true'
         run: pnpm install -f
 
       - name: Build
-        if: steps.cpv.outputs.is-new-version == 'true'
+        if: steps.vue-plyr.outputs.is-new-version == 'true'
         run: pnpm build
 
       - name: Publish
-        if: steps.cpv.outputs.is-new-version == 'true'
+        if: steps.vue-plyr.outputs.is-new-version == 'true'
         run: pnpm --filter=@mellkam/vue-plyr publish --access public --no-git-checks
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       # vue-plyr-queue
       - name: Check package version
+        id: vue-plyr-queue
         uses: PostHog/check-package-version@v2
         with:
           path: ./packages/vue-plyr-queue
 
       - name: Install dependencies
-        if: steps.cpv.outputs.is-new-version == 'true'
+        if: steps.vue-plyr-queue.outputs.is-new-version == 'true'
         run: pnpm install -f
 
       - name: Build
-        if: steps.cpv.outputs.is-new-version == 'true'
+        if: steps.vue-plyr-queue.outputs.is-new-version == 'true'
         run: pnpm build
 
       - name: Publish
-        if: steps.cpv.outputs.is-new-version == 'true'
+        if: steps.vue-plyr-queue.outputs.is-new-version == 'true'
         run: pnpm --filter=@mellkam/vue-plyr-queue publish --access public --no-git-checks
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
