@@ -1,5 +1,5 @@
 {
-	"name": "@examples/basic",
+	"name": "@examples/basic-queue",
 	"scripts": {
 		"dev": "vite dev"
 	},
@@ -9,6 +9,6 @@
 		"vite": "3.2.4",
 		"vue": "3.2.45",
 		"plyr": "3.7.3",
-		"@mellkam/vue-plyr": "workspace:*"
+		"@mellkam/vue-plyr-queue": "workspace:*"
 	}
 }

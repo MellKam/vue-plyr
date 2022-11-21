@@ -1,7 +1,10 @@
 name: Publish package to NPM
 on:
-  release:
-    types: [created]
+  push:
+    branches:
+      - "main"
+    tags:
+      - v.**
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -20,27 +23,42 @@ jobs:
           version: 7
           run_install: false
 
-      - name: Get pnpm store directory
-        id: pnpm-cache
-        shell: bash
-        run: |
-          echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
-
-      - uses: actions/cache@v3
-        name: Setup pnpm cache
+      # vue-plyr
+      - name: Check package version
+        uses: PostHog/check-package-version@v2
         with:
-          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-store-
+          path: ./packages/vue-plyr
 
       - name: Install dependencies
+        if: steps.cpv.outputs.is-new-version == 'true'
         run: pnpm install -f
 
       - name: Build
+        if: steps.cpv.outputs.is-new-version == 'true'
         run: pnpm build
 
       - name: Publish
+        if: steps.cpv.outputs.is-new-version == 'true'
+        run: pnpm --filter=@mellkam/vue-plyr publish --access public --no-git-checks
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: pnpm --filter=@mellkam/vue-plyr publish --access public --no-git-checks
+
+      # vue-plyr-queue
+      - name: Check package version
+        uses: PostHog/check-package-version@v2
+        with:
+          path: ./packages/vue-plyr-queue
+
+      - name: Install dependencies
+        if: steps.cpv.outputs.is-new-version == 'true'
+        run: pnpm install -f
+
+      - name: Build
+        if: steps.cpv.outputs.is-new-version == 'true'
+        run: pnpm build
+
+      - name: Publish
+        if: steps.cpv.outputs.is-new-version == 'true'
+        run: pnpm --filter=@mellkam/vue-plyr-queue publish --access public --no-git-checks
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

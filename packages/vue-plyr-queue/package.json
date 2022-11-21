@@ -1,0 +1,59 @@
+{
+	"name": "@mellkam/vue-plyr-queue",
+	"version": "0.1.2",
+	"main": "./dist/index.js",
+	"dependencies": {
+		"@mellkam/vue-plyr": "0.1.2"
+	},
+	"devDependencies": {
+		"vue": "3.2.45",
+		"plyr": "3.7.3",
+		"vite": "3.2.4",
+		"typescript": "4.9.3",
+		"vite-plugin-dts": "1.7.1"
+	},
+	"peerDependencies": {
+		"plyr": ">=3.6.3",
+		"vue": ">=3.2.0"
+	},
+	"scripts": {
+		"build": "vite build"
+	},
+	"files": [
+		"dist",
+		"src",
+		"package.json",
+		"README.md",
+		"LICENSE.md"
+	],
+	"exports": {
+		".": "./dist/index.js"
+	},
+	"typesVersions": {
+		"*": {
+			"index": [
+				"./dist/index.d.ts"
+			]
+		}
+	},
+	"license": "ISC",
+	"homepage": "https://github.com/MellKam/vue-plyr/blob/main/packages/vue-plyr-queue/README.md",
+	"keywords": [
+		"plyr",
+		"player",
+		"vue",
+		"video",
+		"audio",
+		"youtube",
+		"vimeo",
+		"queue"
+	],
+	"author": {
+		"name": "Artem Melnyk",
+		"url": "https://github.com/MellKam"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/MellKam/vue-plyr.git"
+	}
+}

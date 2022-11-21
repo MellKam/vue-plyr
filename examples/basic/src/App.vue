@@ -1,6 +1,5 @@
 <template>
-	<h1>Hello World</h1>
-	<video ref="plyrTarget" />
+	<video ref="target" />
 	<button @click="isPaused = !isPaused">{{ isPaused }}</button>
 	<button @click="isHidden = !isHidden">Hide</button>
 </template>
@@ -10,10 +9,10 @@ import "plyr/dist/plyr.css";
 import { usePlyr } from "@mellkam/vue-plyr";
 import { ref } from "vue";
 
-const plyrTarget = ref<HTMLElement>();
-const { plyr, onPlyrInit, isPaused, isHidden } = usePlyr(plyrTarget);
+const target = ref<HTMLElement>();
+const { isHidden, isPaused, onPlyrInit, plyr } = usePlyr(target);
 
-onPlyrInit(() => {
-	console.log(plyr.value);
+onPlyrInit((plyr) => {
+	console.log(plyr);
 });
 </script>

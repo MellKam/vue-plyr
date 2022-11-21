@@ -26,6 +26,22 @@ importers:
       vite: 3.2.4
       vue: 3.2.45
 
+  examples/basic-queue:
+    specifiers:
+      '@mellkam/vue-plyr-queue': workspace:*
+      '@vitejs/plugin-vue': ^3.2.0
+      plyr: 3.7.3
+      typescript: 4.9.3
+      vite: 3.2.4
+      vue: 3.2.45
+    devDependencies:
+      '@mellkam/vue-plyr-queue': link:../../packages/vue-plyr-queue
+      '@vitejs/plugin-vue': 3.2.0_vite@3.2.4+vue@3.2.45
+      plyr: 3.7.3
+      typescript: 4.9.3
+      vite: 3.2.4
+      vue: 3.2.45
+
   packages/vue-plyr:
     specifiers:
       plyr: 3.7.3
@@ -33,6 +49,23 @@ importers:
       vite: 3.2.4
       vite-plugin-dts: 1.7.1
       vue: 3.2.45
+    devDependencies:
+      plyr: 3.7.3
+      typescript: 4.9.3
+      vite: 3.2.4
+      vite-plugin-dts: 1.7.1_vite@3.2.4
+      vue: 3.2.45
+
+  packages/vue-plyr-queue:
+    specifiers:
+      '@mellkam/vue-plyr': 0.1.1
+      plyr: 3.7.3
+      typescript: 4.9.3
+      vite: 3.2.4
+      vite-plugin-dts: 1.7.1
+      vue: 3.2.45
+    dependencies:
+      '@mellkam/vue-plyr': link:../vue-plyr
     devDependencies:
       plyr: 3.7.3
       typescript: 4.9.3
