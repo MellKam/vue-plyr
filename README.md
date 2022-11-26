@@ -9,7 +9,7 @@ Integration of the Plyr player with Vue framework
 
 # vue-plyr-queue
 
-![npm](https://www.npmjs.com/package/@mellkam/vue-plyr-queue)
+![npm](https://badgen.net/npm/v/@mellkam/vue-plyr-queue)
 ![license](https://badgen.net/npm/license/@mellkam/vue-plyr-queue)
 
 Vue hook for video/audio queue with plyr player.
