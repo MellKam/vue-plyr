@@ -14,7 +14,7 @@
 	"peerDependencies": {
 		"plyr": ">=3.6.3",
 		"vue": ">=3.2.0",
-		"@mellkam/vue-plyr": "0.1.2"
+		"@mellkam/vue-plyr": "0.2.0"
 	},
 	"scripts": {
 		"build": "vite build",
