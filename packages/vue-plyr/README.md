@@ -8,7 +8,7 @@ It uses Plyr by [sampotts](https://github.com/sampotts) for the players.
 
 # Instalation
 
-This package has two peer dependencies.
+This package has two required peer dependencies.
 
 ```json
 "peerDependencies": {
@@ -17,7 +17,7 @@ This package has two peer dependencies.
 },
 ```
 
-They also need to be installed. Supported versions are listed above.
+Supported versions are listed above.
 
 > It is assumed that vue is already used in your project.
 

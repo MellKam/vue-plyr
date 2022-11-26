@@ -1,6 +1,6 @@
 {
 	"name": "@mellkam/vue-plyr",
-	"version": "0.2.0",
+	"version": "0.2.1",
 	"description": "Integration of the Plyr player with Vue framework",
 	"type": "module",
 	"main": "./dist/index.js",

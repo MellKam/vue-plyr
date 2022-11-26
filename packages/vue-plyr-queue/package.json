@@ -1,8 +1,8 @@
 {
 	"name": "@mellkam/vue-plyr-queue",
-	"version": "0.2.0",
+	"version": "0.2.1",
 	"main": "./dist/index.js",
-	"description": "Vue hook for video/audio queue. It uses Plyr by sampotts for the players.",
+	"description": "Plugin for @mellkam/vue-plyr that makes ease to create video/audio queue with plyr player.",
 	"devDependencies": {
 		"vue": "^3.2.45",
 		"plyr": "^3.7.3",

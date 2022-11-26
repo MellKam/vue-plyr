@@ -3,7 +3,7 @@
 ![npm](https://badgen.net/npm/v/@mellkam/vue-plyr)
 ![license](https://badgen.net/npm/license/@mellkam/vue-plyr)
 
-Integration of the Plyr player with Vue framework
+Integration of the Plyr player with Vue framework.
 
 [Documentation](https://github.com/MellKam/vue-plyr/blob/main/packages/vue-plyr/README.md)
 
@@ -12,6 +12,6 @@ Integration of the Plyr player with Vue framework
 ![npm](https://badgen.net/npm/v/@mellkam/vue-plyr-queue)
 ![license](https://badgen.net/npm/license/@mellkam/vue-plyr-queue)
 
-Vue hook for video/audio queue with plyr player.
+Plugin for @mellkam/vue-plyr that makes ease to create video/audio queue with plyr player.
 
 [Documentation](https://github.com/MellKam/vue-plyr/blob/main/packages/vue-plyr-queue/README.md)
