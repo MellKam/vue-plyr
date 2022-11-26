@@ -10,7 +10,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-
       - uses: actions/setup-node@v3
         with:
           node-version: "16.x"
@@ -24,42 +23,41 @@ jobs:
           run_install: false
 
       # vue-plyr
-      - name: Check package version
+      - name: vue-plyr | Check package version
         id: vue-plyr
         uses: PostHog/check-package-version@v2
         with:
           path: ./packages/vue-plyr
 
-      - name: Install dependencies
-        if: steps.vue-plyr.outputs.is-new-version == 'true'
-        run: pnpm install -f
-
-      - name: Build
-        if: steps.vue-plyr.outputs.is-new-version == 'true'
-        run: pnpm build
-
-      - name: Publish
-        if: steps.vue-plyr.outputs.is-new-version == 'true'
-        run: pnpm --filter=@mellkam/vue-plyr publish --access public --no-git-checks
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
       # vue-plyr-queue
-      - name: Check package version
+      - name: vue-plyr-queue | Check package version
         id: vue-plyr-queue
         uses: PostHog/check-package-version@v2
         with:
           path: ./packages/vue-plyr-queue
 
+      # Install dependencies
       - name: Install dependencies
-        if: steps.vue-plyr-queue.outputs.is-new-version == 'true'
+        if: steps.vue-plyr-queue.outputs.is-new-version == 'true' || steps.vue-plyr.outputs.is-new-version == 'true'
         run: pnpm install -f
 
-      - name: Build
-        if: steps.vue-plyr-queue.outputs.is-new-version == 'true'
-        run: pnpm build
+      # Build
+      - name: vue-plyr | Build
+        if: steps.vue-plyr.outputs.is-new-version == 'true'
+        run: pnpm --filter=@mellkam/vue-plyr build
 
-      - name: Publish
+      - name: vue-plyr-queue | Build
+        if: steps.vue-plyr-queue.outputs.is-new-version == 'true'
+        run: pnpm --filter=@mellkam/vue-plyr-queue build
+
+      # Publish
+      - name: vue-plyr | Publish
+        if: steps.vue-plyr.outputs.is-new-version == 'true'
+        run: pnpm --filter=@mellkam/vue-plyr publish --access public --no-git-checks
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: vue-plyr-queue | Publish
         if: steps.vue-plyr-queue.outputs.is-new-version == 'true'
         run: pnpm --filter=@mellkam/vue-plyr-queue publish --access public --no-git-checks
         env:

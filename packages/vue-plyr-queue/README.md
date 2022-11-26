@@ -1,10 +1,11 @@
 # vue-plyr-queue
-![npm](https://www.npmjs.com/package/@mellkam/vue-plyr-queue)
+
+![npm](https://badgen.net/npm/v/@mellkam/vue-plyr-queue)
 ![license](https://badgen.net/npm/license/@mellkam/vue-plyr-queue)
 
 Vue hook for video/audio queue.
 
-It uses Plyr by [sampotts](https://github.com/sampotts) for the players.
+It uses Plyr by [sampotts](https://github.com/sampotts) for the player.
 
 # Instalation
 
@@ -12,8 +13,8 @@ This package has two peer dependencies.
 
 ```json
 "peerDependencies": {
-	"plyr": ">=3.6.3",
-	"vue": ">=3.2.0"
+  "plyr": ">=3.6.3",
+  "vue": ">=3.2.0"
 },
 ```
 
