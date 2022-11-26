@@ -1,29 +1,23 @@
 <template>
-	<video ref="target" />
-	{{ JSON.stringify(queue) }}
-	<button @click="skipCurrentVideo">Skip</button>
-	<button @click="isPaused = !isPaused">{{ isPaused }}</button>
-	<button @click="isHidden = !isHidden">Hide</button>
+	<Player ref="player">
+		<video />
+	</Player>
 </template>
 
 <script lang="ts" setup>
-import "plyr/dist/plyr.css";
-import { usePlyrQueue } from "@mellkam/vue-plyr-queue";
+import { createQueuePlugin } from "@mellkam/vue-plyr-queue";
+import { Player, PlayerInstance, usePlyr } from "@mellkam/vue-plyr";
 import { ref } from "vue";
 
-const target = ref<HTMLElement>();
-const { isPaused, isHidden, onPlyrInit, queue, skipCurrentVideo } =
-	usePlyrQueue(
-		target,
-		[
-			{ id: "1", videoId: "https://www.youtube.com/watch?v=MSq_DCRxOxw" },
-			{ id: "2", videoId: "https://www.youtube.com/watch?v=MSq_DCRxOxw" },
-			{ id: "3", videoId: "https://www.youtube.com/watch?v=MSq_DCRxOxw" },
-		],
-		{}
-	);
-
-onPlyrInit((plyr) => {
-	console.log(plyr);
-});
+const player = ref<PlayerInstance | null>(null);
+const { addPlugin } = usePlyr(player);
+addPlugin(
+	createQueuePlugin([
+		{
+			id: "1",
+			videoId: "https://www.youtube.com/watch?v=MSq_DCRxOxw",
+			sourceType: "youtube",
+		},
+	]),
+);
 </script>

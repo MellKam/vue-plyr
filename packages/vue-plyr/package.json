@@ -1,18 +1,24 @@
 {
 	"name": "@mellkam/vue-plyr",
-	"version": "0.1.2",
+	"version": "0.2.0",
+	"description": "Integration of the Plyr player with Vue framework",
 	"type": "module",
 	"main": "./dist/index.js",
 	"exports": {
-		".": "./dist/index.js",
-		"./utils": "./dist/utils.js"
+		".": {
+			"import": "./dist/index.js",
+			"types": "./dist/index.d.ts"
+		},
+		"./utils": {
+			"import": "./dist/utils.js",
+			"types": "./dist/utils.d.ts"
+		}
 	},
 	"files": [
 		"dist",
 		"package.json",
 		"src",
-		"README.md",
-		"LICENSE.md"
+		"README.md"
 	],
 	"typesVersions": {
 		"*": {
@@ -25,14 +31,15 @@
 		}
 	},
 	"scripts": {
-		"build": "vite build"
+		"build": "vite build",
+		"lint": "eslint . && prettier . -w"
 	},
 	"devDependencies": {
-		"typescript": "4.9.3",
-		"vite": "3.2.4",
-		"vue": "3.2.45",
-		"plyr": "3.7.3",
-		"vite-plugin-dts": "1.7.1"
+		"plyr": "^3.7.3",
+		"typescript": "^4.9.3",
+		"vite": "^3.2.4",
+		"vite-plugin-dts": "^1.7.1",
+		"vue": "^3.2.45"
 	},
 	"peerDependencies": {
 		"plyr": ">=3.6.3",
@@ -46,7 +53,7 @@
 			"optional": false
 		}
 	},
-	"license": "ISC",
+	"license": "MIT",
 	"homepage": "https://github.com/MellKam/vue-plyr/blob/main/packages/vue-plyr/README.md",
 	"keywords": [
 		"plyr",

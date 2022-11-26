@@ -12,11 +12,8 @@ export default defineConfig({
 			fileName: (_format, name) => `${name}.js`,
 		},
 		rollupOptions: {
-			external: ["vue", "plyr"],
+			external: ["vue", "plyr", "plyr/dist/plyr.css"],
 			output: {
-				globals: {
-					vue: "Vue",
-				},
 				exports: "named",
 				esModule: true,
 			},

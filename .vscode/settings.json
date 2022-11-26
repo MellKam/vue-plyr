@@ -1,0 +1,10 @@
+{
+	"prettier.enable": true,
+	"eslint.enable": true,
+	"eslint.workingDirectories": [
+		"packages/vue-plyr",
+		"packages/vue-plyr-queue",
+		"examples/basic",
+		"examples/basic-queue"
+	]
+}

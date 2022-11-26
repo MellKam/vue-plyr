@@ -4,12 +4,12 @@
 		"module": "esnext",
 		"forceConsistentCasingInFileNames": true,
 		"moduleResolution": "node",
-		"noUnusedLocals": false,
-		"noUnusedParameters": false,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
 		"preserveWatchOutput": true,
 		"strictNullChecks": true,
 		"strict": true,
 		"lib": ["esnext", "dom"]
 	},
-	"exclude": ["node_modules"]
+	"exclude": ["node_modules/**", "dist/**"]
 }

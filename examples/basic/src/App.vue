@@ -1,18 +1,20 @@
 <template>
-	<video ref="target" />
-	<button @click="isPaused = !isPaused">{{ isPaused }}</button>
-	<button @click="isHidden = !isHidden">Hide</button>
+	<Player ref="player">
+		<video />
+	</Player>
 </template>
 
 <script lang="ts" setup>
-import "plyr/dist/plyr.css";
-import { usePlyr } from "@mellkam/vue-plyr";
+import { Player, PlayerInstance, usePlyr } from "@mellkam/vue-plyr";
 import { ref } from "vue";
 
-const target = ref<HTMLElement>();
-const { isHidden, isPaused, onPlyrInit, plyr } = usePlyr(target);
+const player = ref<PlayerInstance | null>(null);
+const { setVideo, onPlyrInit } = usePlyr(player);
 
-onPlyrInit((plyr) => {
-	console.log(plyr);
+onPlyrInit(() => {
+	setVideo({
+		src: "https://www.youtube.com/watch?v=MSq_DCRxOxw",
+		provider: "youtube",
+	});
 });
 </script>

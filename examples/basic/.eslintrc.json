@@ -1,0 +1,10 @@
+{
+	"root": false,
+	"extends": ["@mellkam/eslint-config"],
+	"parserOptions": {
+		"project": "./tsconfig.json"
+	},
+	"rules": {
+		"no-unused-vars": "off"
+	}
+}
