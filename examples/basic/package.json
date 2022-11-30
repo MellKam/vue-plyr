@@ -10,7 +10,7 @@
 		"vue": "^3.2.45",
 		"plyr": "^3.7.3",
 		"@mellkam/vue-plyr": "workspace:*",
-		"@mellkam/vue-plyr-queue": "workspace:*",
+		"@mellkam/vue-plyr-queue": "0.2.1",
 		"@mellkam/eslint-config": "^0.2.2",
 		"eslint": "^8.28.0"
 	}

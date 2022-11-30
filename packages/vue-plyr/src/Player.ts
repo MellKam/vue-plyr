@@ -1,8 +1,6 @@
 import { type Options, default as Plyr } from "plyr";
 import { defineComponent, type PropType } from "vue";
 
-import "plyr/dist/plyr.css";
-
 export const Player = defineComponent({
 	props: {
 		optinos: { type: Object as PropType<Options>, default: () => ({}) },

@@ -1,18 +1,40 @@
-import { computed, ComputedRef, readonly, Ref, ref } from "vue";
-import { createEventHook } from "@mellkam/vue-plyr/utils";
-import { type PlyrPluginData } from "@mellkam/vue-plyr";
-import { Provider } from "plyr";
+import { computed, ComputedRef, DeepReadonly, readonly, Ref, ref } from "vue";
+import { createEventHook, EventHookOn } from "@mellkam/vue-plyr/utils";
+import type { Plugin } from "@mellkam/vue-plyr";
+import type { Provider } from "plyr";
 
-type VideoGeneric = {
+export interface QueueVideoGeneric {
 	id: string;
+	/**
+	 * The source of the video. Depending on the provider, this can be the url to (youtube|vimeo) video or the path to the file.
+	 */
 	src: string;
-	provider: Provider;
-};
+	provider?: Provider;
+}
 
-export const createQueuePlugin = <Video extends VideoGeneric>(
+export interface QueuePluginData<Video extends QueueVideoGeneric> {
+	addQueueVideo: (...video: Video[]) => void;
+	removeQueueVideo: (id: Video["id"]) => void;
+	skipCurrentVideo: () => void;
+	isQueueActive: Readonly<Ref<boolean>>;
+	queueLength: Readonly<Ref<number>>;
+	queue: Readonly<Ref<readonly DeepReadonly<Video>[]>>;
+	onPlayVideo: EventHookOn<Video>;
+	onRemoveVideo: EventHookOn<Video>;
+	onPause: EventHookOn<Video>;
+	currentVideo: Readonly<Ref<DeepReadonly<Video> | undefined>>;
+	queueWithoutFirst: Readonly<Ref<readonly DeepReadonly<Video>[]>>;
+}
+
+export type QueuePlugin<Video extends QueueVideoGeneric> = Plugin<
+	QueuePluginData<Video>
+>;
+
+export const createQueuePlugin = <Video extends QueueVideoGeneric>(
 	initialQueue: Video[],
-) => {
-	return (data: PlyrPluginData) => {
+	options: { defaultProvider?: Provider } = {},
+): QueuePlugin<Video> => {
+	return (data) => {
 		const queue = ref(initialQueue) as Ref<Video[]>;
 		const currentVideo = computed(() => queue.value[0]) as ComputedRef<
 			Video | undefined
@@ -38,7 +60,7 @@ export const createQueuePlugin = <Video extends VideoGeneric>(
 			});
 
 			if (isQueueActive.value) {
-				setVideo(queue.value[0]);
+				setQueueVideo(queue.value[0]);
 			}
 		});
 
@@ -50,17 +72,18 @@ export const createQueuePlugin = <Video extends VideoGeneric>(
 			return [...queue.value].slice(1);
 		});
 
-		const addVideo = (...videos: Video[]) => {
+		const addQueueVideo = (...videos: Video[]) => {
 			if (queue.value.length === 0) {
-				setVideo(videos[0]);
+				setQueueVideo(videos[0]);
 			}
 			queue.value.push(...videos);
 		};
 
-		const removeVideo = (id: string) => {
+		const removeQueueVideo = (id: string) => {
 			if (queue.value[0].id === id) {
 				return;
 			}
+
 			queue.value = queue.value.filter((v) => {
 				if (v.id !== id) return true;
 
@@ -69,12 +92,16 @@ export const createQueuePlugin = <Video extends VideoGeneric>(
 			});
 		};
 
-		const setVideo = (video: Video) => {
+		const setQueueVideo = (video: Video) => {
+			const provider = video.provider || options.defaultProvider;
+			if (!provider) {
+				return console.warn("Cannot get video provider");
+			}
+
 			const isVideoSetted = data.setVideo({
 				src: video.src,
-				provider: video.provider,
+				provider,
 			});
-
 			if (!isVideoSetted) {
 				return console.error("Unable to set video");
 			}
@@ -97,7 +124,7 @@ export const createQueuePlugin = <Video extends VideoGeneric>(
 
 			removeVideoEvent.trigger(queue.value.shift()!);
 			const nextVideo = queue.value[0];
-			if (nextVideo) return setVideo(nextVideo);
+			if (nextVideo) return setQueueVideo(nextVideo);
 
 			data.plyr?.stop();
 		};
@@ -112,12 +139,12 @@ export const createQueuePlugin = <Video extends VideoGeneric>(
 			}
 
 			removeVideoEvent.trigger(queue.value.shift()!);
-			setVideo(queue.value[0]);
+			setQueueVideo(queue.value[0]);
 		}
 
 		return {
-			addVideo,
-			removeVideo,
+			addQueueVideo,
+			removeQueueVideo,
 			skipCurrentVideo,
 			isQueueActive: readonly(isQueueActive),
 			queueLength: readonly(queueLength),

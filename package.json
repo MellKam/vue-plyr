@@ -1,6 +1,6 @@
 {
 	"name": "vue-plyr",
-	"version": "0.2.1",
+	"version": "0.2.2",
 	"workspaces": [
 		"packages/*",
 		"examples/*"
@@ -19,5 +19,9 @@
 	"engines": {
 		"node": ">=14.0.0"
 	},
-	"packageManager": "pnpm@7.17.0"
+	"overrides": {
+		"@mellkam/vue-plyr": "link:./packages/vue-plyr",
+		"@mellkam/vue-plyr-queue": "link:./packages/vue-plyr-queue"
+	},
+	"packageManager": "pnpm@7.17.1"
 }
