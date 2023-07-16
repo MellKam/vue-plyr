@@ -4,14 +4,11 @@
 		"dev": "vite dev"
 	},
 	"devDependencies": {
-		"@vitejs/plugin-vue": "^3.2.0",
-		"typescript": "^4.9.3",
-		"vite": "^3.2.4",
-		"vue": "^3.2.45",
-		"plyr": "^3.7.3",
-		"@mellkam/vue-plyr-queue": "workspace:*",
-		"@mellkam/vue-plyr": "workspace:*",
-		"@mellkam/eslint-config": "^0.2.31",
-		"eslint": "^8.28.0"
+		"@vitejs/plugin-vue": "4.2.3",
+		"typescript": "5.1.6",
+		"vite": "4.4.4",
+		"vue": "3.3.4",
+		"plyr": "3.7.8",
+		"@mellkam/vue-plyr-queue": "workspace:*"
 	}
 }

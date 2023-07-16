@@ -17,15 +17,8 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           cache: "pnpm"
-          node-version: "16.x"
+          node-version: "18.x"
           registry-url: "https://registry.npmjs.org"
-
-      # vue-plyr
-      - name: vue-plyr | Check package version
-        id: vue-plyr
-        uses: PostHog/check-package-version@v2
-        with:
-          path: ./packages/vue-plyr
 
       # vue-plyr-queue
       - name: vue-plyr-queue | Check package version
@@ -37,24 +30,14 @@ jobs:
       # Install dependencies
       - name: Install dependencies
         if: steps.vue-plyr-queue.outputs.is-new-version == 'true' || steps.vue-plyr.outputs.is-new-version == 'true'
-        run: pnpm install -f
+        run: pnpm install
 
       # Build
-      - name: vue-plyr | Build
-        if: steps.vue-plyr.outputs.is-new-version == 'true'
-        run: pnpm --filter=@mellkam/vue-plyr build
-
       - name: vue-plyr-queue | Build
         if: steps.vue-plyr-queue.outputs.is-new-version == 'true'
         run: pnpm --filter=@mellkam/vue-plyr-queue build
 
       # Publish
-      - name: vue-plyr | Publish
-        if: steps.vue-plyr.outputs.is-new-version == 'true'
-        run: pnpm --filter=@mellkam/vue-plyr publish --access public --no-git-checks
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
       - name: vue-plyr-queue | Publish
         if: steps.vue-plyr-queue.outputs.is-new-version == 'true'
         run: pnpm --filter=@mellkam/vue-plyr-queue publish --access public --no-git-checks
