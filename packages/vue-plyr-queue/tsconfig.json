@@ -1,11 +1,32 @@
 {
-	"extends": "../../tsconfig.base.json",
 	"compilerOptions": {
-		"baseUrl": ".",
+		"forceConsistentCasingInFileNames": true,
+		"noFallthroughCasesInSwitch": true,
+		"allowImportingTsExtensions": true,
+		"noImplicitAny": true,
+		"noEmitOnError": true,
+		"noImplicitReturns": true,
+		"noUnusedParameters": true,
+		"emitDeclarationOnly": true,
+		"noUncheckedIndexedAccess": true,
+		"noImplicitThis": true,
 		"declaration": true,
+		"strict": true,
+		"removeComments": false,
+		"lib": ["DOM", "ESNext", "DOM.Iterable"],
+		"noUnusedLocals": true,
+		"moduleResolution": "NodeNext",
+		"module": "ESNext",
+		"target": "ESNext",
 		"outDir": "dist",
-		"allowSyntheticDefaultImports": true,
-		"esModuleInterop": true
+		"baseUrl": ".",
+		"isolatedModules": true,
+		"ignoreDeprecations": "5.0",
+		"allowUnreachableCode": false,
+		"allowUnusedLabels": false,
+		"skipLibCheck": true,
+		"useDefineForClassFields": false
 	},
-	"include": ["./src/**/*.ts"]
+	"include": ["./src/**/*.ts"],
+	"exclude": ["node_modules"]
 }
