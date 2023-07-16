@@ -1,6 +1,6 @@
 # vue-plyr-queue
 
-![npm](https://badgen.net/npm/v/@mellkam/vue-plyr-queue)
+![npm](https://img.shields.io/npm/v/@mellkam/vue-plyr-queue?label=npm)
 ![license](https://badgen.net/npm/license/@mellkam/vue-plyr-queue)
 
 Package that makes easy to build video queue with plyr in vue
