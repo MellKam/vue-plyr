@@ -39,6 +39,7 @@ export const useVideoQueue = <T_QueueVideo extends QueueVideoBase>({
 	plyr,
 	initialQueue = [],
 	defaultProvider = "html5",
+	immediate = true,
 	onNextVideo,
 	onRemoveVideo
 }: {
@@ -53,6 +54,14 @@ export const useVideoQueue = <T_QueueVideo extends QueueVideoBase>({
 	 * @default "html5"
 	 */
 	defaultProvider?: Provider;
+	/**
+	 * If initialsQueue was not empty and immediate is true, then `nextVideo()` will be called.
+	 * This will automatically set the currentVideo and plyr source to first video in initialQueue.
+	 * Otherwise you need to manually call `nextVideo()` or `addVideo()`.
+	 *
+	 * @default true
+	 */
+	immediate?: boolean;
 	onNextVideo?: (
 		nextVideo: T_QueueVideo,
 		previousVideo: T_QueueVideo | null
@@ -144,7 +153,8 @@ export const useVideoQueue = <T_QueueVideo extends QueueVideoBase>({
 		if (!_plyr.value) return;
 
 		_plyr.value.on("ended", nextVideo);
-		if (queue.value.length !== 0) nextVideo();
+
+		if (immediate && queue.value.length !== 0) nextVideo();
 	});
 
 	return {
